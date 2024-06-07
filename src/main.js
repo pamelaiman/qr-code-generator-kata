@@ -1,5 +1,9 @@
-import { sum } from "./sum.js";
+import { channels } from './channels.js';
+import QRCode from 'qrcode';
 
-console.log("sum is ", sum(10, 20));
-console.log("This is main.js.");
-console.log("You should probably use `yarn test` or `yarn test --watchAll`");
+const generateQR = async channelList => {
+    for (let channel of channelList) {
+        await QRCode.toFile(`outputImages/${channel.name}.png`, channel.url)
+    }
+}
+generateQR(channels);
